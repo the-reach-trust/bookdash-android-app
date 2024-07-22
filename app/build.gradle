@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'com.google.firebase.firebase-perf'
-apply plugin: 'com.google.firebase.crashlytics'
 apply plugin: 'kotlin-kapt'
 
 repositories {
@@ -10,14 +9,14 @@ repositories {
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion = rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "org.bookdash.android"
+        applicationId = "org.bookdash.android"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.compileSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName "$rootProject.ext.versionName"
+        versionCode = rootProject.ext.versionCode
+        versionName = "$rootProject.ext.versionName"
         testInstrumentationRunner "org.bookdash.android.presentation.CustomTestRunner"
         resConfigs "en"
         vectorDrawables.useSupportLibrary = true
@@ -28,6 +27,10 @@ android {
         enabled = true
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
 
     File signFile = rootProject.file('release-keystore.properties')
     if (signFile.exists()) {
@@ -44,7 +47,6 @@ android {
             }
         }
         buildTypes.release.signingConfig signingConfigs.release
-
     }
 
     packagingOptions {
@@ -60,27 +62,46 @@ android {
         exclude 'META-INF/maven/com.google.guava/guava/pom.xml'
         exclude 'LICENSE.txt'
     }
-    flavorDimensions "env"
-    productFlavors {
-        mock {
-            dimension "env"
-            applicationIdSuffix ".qa"
-        }
-        qa {
-            dimension "env"
-            applicationIdSuffix ".qa"
-        }
-        prod {
-            dimension "env"
-        }
+
+    buildFeatures {
+        flavorDimensions = ["env"]
     }
+
+    flavorDimensions.add("env")
+
+//    productFlavors {
+//        mock {
+//            dimension "env"
+//            versionNameSuffix ".qa"
+//            applicationIdSuffix ".qa"
+//        }
+//        prod {
+//            dimension "env"
+//        }
+//    }
+
+//    productFlavors {
+//        mock {
+//            dimension "env"
+//            applicationIdSuffix = ".qa"
+//        }
+//        qa {
+//            dimension "env"
+//            applicationIdSuffix = ".qa"
+//        }
+//        prod {
+//            dimension "env"
+//        }
+//    }
     // Remove mockRelease as it's not needed.
-    android.variantFilter { variant ->
-        if (variant.buildType.name.equals('release')
-                && variant.getFlavors().get(0).name.equals('mock')) {
-            variant.setIgnore(true)
-        }
-    }
+//    androidComponents {
+//        onVariants { variant ->
+//            // Remove 'mock' flavor variants in 'release' build type
+//            if (variant.buildType.name == 'release' && variant.productFlavors.any { it.name == 'mock' }) {
+//                variant.ignore = true
+//            }
+//        }
+//    }
     // Always show the result of every unit test, even if it passes.
     testOptions.unitTests.all {
         testLogging {
@@ -108,6 +129,7 @@ android {
         jsonFile = rootProject.file('google-play-keys.json')
         track = "${track}"
     }
+    namespace 'org.bookdash.android'
 }
 dependencies {
 
@@ -147,13 +169,13 @@ dependencies {
     implementation 'com.github.castorflex.smoothprogressbar:library-circular:1.3.0'
 
     // Import the Firebase Bill of Materials (BoM)
-    implementation platform('com.google.firebase:firebase-bom:26.0.0')
+    implementation platform('com.google.firebase:firebase-bom:33.1.2')
 
     // Firebase Dependencies
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-config'
-    implementation 'com.google.firebase:firebase-crashlytics'   
+    implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-database'
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-perf'
@@ -168,10 +190,13 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation "androidx.drawerlayout:drawerlayout:1.2.0"
+    implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
 
     implementation project(path: ':materialhelptutorial')
-    implementation project(':fabbutton')
+    implementation project(path: ':fabbutton')
 }
 
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'

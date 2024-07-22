@@ -23,8 +23,8 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.bookdash.android.BuildConfig;
-import org.bookdash.android.Injection;
 import org.bookdash.android.R;
+import org.bookdash.android.di.Injection;
 import org.bookdash.android.presentation.about.AboutFragment;
 import org.bookdash.android.presentation.activity.BaseAppCompatActivity;
 import org.bookdash.android.presentation.downloads.DownloadsFragment;

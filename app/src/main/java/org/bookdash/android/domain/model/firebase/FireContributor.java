@@ -6,8 +6,7 @@ import android.text.TextUtils;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import org.bookdash.android.Injection;
-import org.bookdash.android.config.FirebaseConfig;
+import org.bookdash.android.di.Injection;
 
 import java.util.ArrayList;
 import java.util.List;
