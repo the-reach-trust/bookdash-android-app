@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.8.22'
+    ext.kotlin_version = '1.9.20'
     repositories {
         jcenter()
         google()
@@ -28,7 +28,7 @@ ext {
     versionName = "2.9.2"
     minSdkVersion = 23
     compileSdkVersion = 34
-    junitVersion = '4.13.1'
+    junitVersion = '4.13.2'
     mockitoVersion = '1.10.19'
     powerMockito = '1.7.4'
     hamcrestVersion = '1.3'
