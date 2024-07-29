@@ -2,6 +2,7 @@ package org.bookdash.android;
 
 import android.content.Context;
 
+import androidx.multidex.BuildConfig;
 import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
@@ -11,6 +12,7 @@ import com.google.firebase.installations.FirebaseInstallations;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import org.bookdash.android.config.CrashlyticsTree;
+import org.bookdash.android.di.Injection;
 
 import rx.Subscriber;
 import timber.log.Timber;
@@ -82,5 +84,4 @@ public class BookDashApplication extends MultiDexApplication {
         }
         return firebaseAnalytics;
     }
-
 }

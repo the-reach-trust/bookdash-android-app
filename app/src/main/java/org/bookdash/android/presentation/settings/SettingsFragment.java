@@ -13,9 +13,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
-import org.bookdash.android.Injection;
 import org.bookdash.android.R;
 import org.bookdash.android.data.settings.SettingsApiImpl;
+import org.bookdash.android.di.Injection;
 import org.bookdash.android.presentation.main.NavDrawerInterface;
 
 import java.util.ArrayList;

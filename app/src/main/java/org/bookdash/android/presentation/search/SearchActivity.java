@@ -19,8 +19,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.bookdash.android.Injection;
 import org.bookdash.android.R;
+import org.bookdash.android.di.Injection;
 import org.bookdash.android.domain.model.firebase.FireBookDetails;
 import org.bookdash.android.presentation.activity.BaseAppCompatActivity;
 import org.bookdash.android.presentation.bookinfo.BookInfoActivity;
