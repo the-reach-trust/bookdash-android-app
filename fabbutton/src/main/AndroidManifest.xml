@@ -23,7 +23,6 @@
   ~ THE SOFTWARE.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mbanje.kurt.fabbutton">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
   <application />
 </manifest>

@@ -8,7 +8,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import org.bookdash.android.BookDashApplication;
-import org.bookdash.android.Injection;
+import org.bookdash.android.di.Injection;
 import org.threeten.bp.Instant;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
