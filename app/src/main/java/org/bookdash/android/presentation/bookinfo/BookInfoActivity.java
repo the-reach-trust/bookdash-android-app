@@ -49,10 +49,10 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.StorageReference;
 
-import org.bookdash.android.Injection;
 import org.bookdash.android.R;
 import org.bookdash.android.config.GlideApp;
 import org.bookdash.android.databinding.ActivityBookInformationBinding;
+import org.bookdash.android.di.Injection;
 import org.bookdash.android.domain.model.firebase.FireBookDetails;
 import org.bookdash.android.domain.model.firebase.FireContributor;
 import org.bookdash.android.domain.model.gson.BookPages;

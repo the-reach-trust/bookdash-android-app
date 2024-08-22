@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.bookdash.android.Injection;
 import org.bookdash.android.R;
+import org.bookdash.android.di.Injection;
 import org.bookdash.android.presentation.main.MainActivity;
 
 import za.co.riggaroo.materialhelptutorial.tutorial.MaterialTutorialActivity;

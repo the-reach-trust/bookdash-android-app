@@ -25,8 +25,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import org.bookdash.android.Injection;
 import org.bookdash.android.R;
+import org.bookdash.android.di.Injection;
 import org.bookdash.android.domain.model.firebase.FireBookDetails;
 import org.bookdash.android.presentation.bookinfo.BookInfoActivity;
 import org.bookdash.android.presentation.main.NavDrawerInterface;

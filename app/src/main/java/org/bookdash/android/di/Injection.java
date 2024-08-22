@@ -1,4 +1,4 @@
-package org.bookdash.android;
+package org.bookdash.android.di;
 
 import android.content.Context;
 
@@ -30,8 +30,8 @@ import org.bookdash.android.data.utils.firebase.FirebaseObservableListeners;
  * @since 15/11/03.
  */
 public class Injection {
+    public static final String STORAGE_PREFIX = "gs://book-dash.appspot.com/";
 
-    public static final String STORAGE_PREFIX = "gs://book-dash-qa.appspot.com/";
     private static BookService bookService = null;
     private static RemoteConfigSettingsApi config;
     private static DownloadService downloadService = null;
@@ -52,8 +52,10 @@ public class Injection {
             bookService = new BookServiceImpl(bookDatabase);
 
             config = FirebaseConfig.newInstance().init();
+
             downloadService = new DownloadServiceImpl(FirebaseStorage.getInstance(firebaseApp));
             firebaseAnalytics = new BookDashFirebaseAnalytics(FirebaseAnalytics.getInstance(context));
+
         }
     }
 
@@ -61,6 +63,9 @@ public class Injection {
         return bookService != null && config != null;
     }
 
+    public static TutorialsRepository provideTutorialRepo(Context context) {
+        return TutorialsRepositories.getInstance(context);
+    }
 
     public static SettingsRepository provideSettingsRepo(Context context) {
         return SettingsRepositories
@@ -69,10 +74,6 @@ public class Injection {
 
     private static RemoteConfigSettingsApi provideRemoteConfig() {
         return config;
-    }
-
-    public static TutorialsRepository provideTutorialRepo(Context context) {
-        return TutorialsRepositories.getInstance(context);
     }
 
     public static BookService provideBookService() {
