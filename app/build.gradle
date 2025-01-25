@@ -16,7 +16,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.compileSdkVersion
         versionCode = rootProject.ext.versionCode
-        versionName = "$rootProject.ext.versionName"
+        versionName = rootProject.ext.versionName
         testInstrumentationRunner "org.bookdash.android.presentation.CustomTestRunner"
         resConfigs "en"
         vectorDrawables.useSupportLibrary = true
@@ -63,40 +63,6 @@ android {
     }
 
     flavorDimensions.add("env")
-
-//    productFlavors {
-//        mock {
-//            dimension "env"
-//            versionNameSuffix ".qa"
-//            applicationIdSuffix ".qa"
-//        }
-//        prod {
-//            dimension "env"
-//        }
-//    }
-
-//    productFlavors {
-//        mock {
-//            dimension "env"
-//            applicationIdSuffix = ".qa"
-//        }
-//        qa {
-//            dimension "env"
-//            applicationIdSuffix = ".qa"
-//        }
-//        prod {
-//            dimension "env"
-//        }
-//    }
-    // Remove mockRelease as it's not needed.
-//    androidComponents {
-//        onVariants { variant ->
-//            // Remove 'mock' flavor variants in 'release' build type
-//            if (variant.buildType.name == 'release' && variant.productFlavors.any { it.name == 'mock' }) {
-//                variant.ignore = true
-//            }
-//        }
-//    }
     // Always show the result of every unit test, even if it passes.
     testOptions.unitTests.all {
         testLogging {
@@ -128,6 +94,7 @@ android {
 }
 dependencies {
 
+    implementation 'com.google.firebase:firebase-storage-ktx:21.0.1'
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     testImplementation "org.mockito:mockito-all:$rootProject.ext.mockitoVersion"
     testImplementation "org.hamcrest:hamcrest-all:$rootProject.ext.hamcrestVersion"
@@ -175,7 +142,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging'
     implementation 'com.google.firebase:firebase-perf'
     implementation 'com.google.firebase:firebase-storage'
-    implementation 'com.firebaseui:firebase-ui-storage:6.1.0'
 
     implementation 'io.reactivex:rxandroid:1.2.1'
     implementation 'io.reactivex:rxjava:1.2.5'
@@ -187,6 +153,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation "androidx.drawerlayout:drawerlayout:1.2.0"
     implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
+
 
     implementation project(path: ':materialhelptutorial')
     implementation project(path: ':fabbutton')
