@@ -3,7 +3,6 @@ package org.bookdash.android.presentation.listbooks;
 import static org.bookdash.android.presentation.utils.StringUtils.convertGsUrlToHttp;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,6 @@ import org.bookdash.android.R;
 import org.bookdash.android.config.GlideApp;
 import org.bookdash.android.domain.model.firebase.FireBookDetails;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import timber.log.Timber;
