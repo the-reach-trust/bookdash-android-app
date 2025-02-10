@@ -1,5 +1,7 @@
 package org.bookdash.android.presentation.bookinfo;
 
+import static org.bookdash.android.presentation.utils.StringUtils.convertGsUrlToHttp;
+
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -47,7 +49,6 @@ import com.bumptech.glide.request.target.CustomTarget;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.storage.StorageReference;
 
 import org.bookdash.android.R;
 import org.bookdash.android.config.GlideApp;
@@ -267,7 +268,7 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
         }
     }
 
-    private void loadImage(StorageReference url) {
+    private void loadImage(String url) {
         GlideApp.with(this).load(url)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(new CustomTarget<Drawable>() {
@@ -286,6 +287,8 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
                     }
                 });
     }
+
+
     public static Bitmap drawableToBitmap (Drawable drawable) {
         Bitmap bitmap = null;
 
@@ -440,7 +443,8 @@ public class BookInfoActivity extends BaseAppCompatActivity implements BookInfoC
         if (bookInfo.isDownloadedAlready()) {
             showDownloadFinished();
         }
-        loadImage(bookInfo.getFirebaseBookCoverUrl());
+        String firebaseUrl = convertGsUrlToHttp(bookInfo.getBookCoverPageUrl());
+        loadImage(firebaseUrl);
     }
 
     @Override

@@ -1,113 +1,91 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<!--
-MIT License
-
-Copyright (c) 2015 Rebecca Franks
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software
-and associated documentation files (the "Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject
-to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or
-substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
-BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
--->
-
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_help_root"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_green_light"
     android:orientation="vertical">
 
+    <!-- ViewPager with height dynamically adjusted to use the remaining space -->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/activity_help_view_pager"
-        android:clipToPadding="false"
-        android:clipChildren="false"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/linear_layout_indicator">
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        tools:background="@color/design_default_color_error" />
 
-    </androidx.viewpager.widget.ViewPager>
-
-    <View android:layout_width="match_parent"
-
-        android:layout_above="@+id/linear_layout_indicator"
+    <!-- Divider line -->
+    <View
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#E0E0E0"
-        />
+        android:background="#E0E0E0" />
+
+    <!-- LinearLayout for the bottom indicator section -->
     <LinearLayout
         android:id="@+id/linear_layout_indicator"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:weightSum="1"
-        android:layout_alignParentBottom="true"
+        android:layout_height="0dp"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="1"
+        android:gravity="center"
         android:orientation="horizontal">
 
+        <!-- Skip button -->
         <Button
             android:id="@+id/activity_help_skip_textview"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_centerInParent="true"
             style="@android:style/Widget.Holo.Button.Borderless"
-            android:fontFamily="sans-serif"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
             android:gravity="center"
             android:text="@string/tutorial_skip"
             android:textColor="@color/tutorial_buttonTextColor"
-            android:textSize="18sp"
-            android:layout_weight="0.25" />
+            android:textSize="18sp" />
 
+        <!-- Page indicator -->
         <za.co.riggaroo.materialhelptutorial.view.CirclePageIndicator
             android:id="@+id/activity_help_view_page_indicator"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_above="@id/activity_help_skip_textview"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
             app:fillColor="#41FFFFFF"
             app:pageColor="#14FFFFFF"
             app:radius="6dp"
-            android:layout_weight="0.5"
             app:strokeColor="#E0E0E0"
-            app:strokeWidth="0dp"
-            android:layout_gravity="center_vertical"
-            android:minHeight="24dp" />
+            app:strokeWidth="0dp" />
 
+        <!-- Next button and done button in a separate layout -->
         <LinearLayout
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="0.25"
-            android:orientation="vertical"
-            android:layout_height="match_parent">
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <!-- ImageButton for navigation -->
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_navigate_next"
-                style="@android:style/Widget.Holo.Button.Borderless"
                 android:id="@+id/activity_next_button"
+                style="@android:style/Widget.Holo.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:visibility="visible"
-                android:padding="16dp" />
+                android:padding="16dp"
+                android:src="@drawable/ic_navigate_next" />
+
+            <!-- Done button, initially hidden -->
             <Button
                 android:id="@+id/activity_tutorial_done"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 style="@android:style/Widget.Holo.Button.Borderless"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/tutorial_done"
                 android:textColor="@color/tutorial_buttonTextColor"
                 android:textSize="18sp"
                 android:visibility="gone" />
         </LinearLayout>
-
     </LinearLayout>
+</LinearLayout>
 
 
-</RelativeLayout>
