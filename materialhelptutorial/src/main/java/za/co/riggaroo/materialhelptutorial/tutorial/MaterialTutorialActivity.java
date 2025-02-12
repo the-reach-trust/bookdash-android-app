@@ -23,6 +23,7 @@ package za.co.riggaroo.materialhelptutorial.tutorial;
 
 
 import android.app.ActionBar;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -76,23 +77,18 @@ public class MaterialTutorialActivity extends AppCompatActivity implements Mater
             getActionBar().hide();
         }
         mRootView = findViewById(R.id.activity_help_root);
-        mHelpTutorialViewPager = (ViewPager) findViewById(R.id.activity_help_view_pager);
-        mTextViewSkip = (TextView) findViewById(R.id.activity_help_skip_textview);
-        mNextButton = (ImageButton) findViewById(R.id.activity_next_button);
-        mDoneButton = (Button) findViewById(R.id.activity_tutorial_done);
+        mHelpTutorialViewPager = findViewById(R.id.activity_help_view_pager);
+        mTextViewSkip = findViewById(R.id.activity_help_skip_textview);
+        mNextButton = findViewById(R.id.activity_next_button);
+        mDoneButton = findViewById(R.id.activity_tutorial_done);
+
+
 
         mTextViewSkip.setOnClickListener(finishTutorialClickListener);
         mDoneButton.setOnClickListener(finishTutorialClickListener);
 
 
-        mNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                materialTutorialPresenter.nextClick();
-
-
-            }
-        });
+        mNextButton.setOnClickListener(v -> materialTutorialPresenter.nextClick());
         List<TutorialItem> tutorialItems = getIntent().getParcelableArrayListExtra(MATERIAL_TUTORIAL_ARG_TUTORIAL_ITEMS);
         if (tutorialItems == null) {
             showEndTutorial();
@@ -105,11 +101,9 @@ public class MaterialTutorialActivity extends AppCompatActivity implements Mater
         if (isFinishing()) {
             return;
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
     }
 
     @Override
